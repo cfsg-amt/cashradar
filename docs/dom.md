@@ -12,7 +12,8 @@ For example, consider the following simple html document:
 <head>
     <meta charset="UTF-8">
     <title>My Website</title>
-</head> <body>
+</head> 
+<body>
     <div id="content">
         <h1 class="heading">Hello World!</h1>
         <p>This is my website.</p>
@@ -53,7 +54,7 @@ In this tree, every HTML element is a node. The type of node can be an **element
 * **Text nodes**: `My Website`, `Hello World!`, and `This is my website`.
 
 You can navigate this tree using various DOM methods to select, add, modify, or delete nodes. 
-For example, you can select the `h1` node using the method document.querySelector('h1'), then change its text content with textContent.
+For example, you can select the `h1` node using the method **`document.querySelector('h1')`**, then change its text content with textContent.
 
 The browser builds this tree-like structure from the HTML document, **and any changes to the tree immediately reflect on the rendering of the web page.** 
 This is the basis of how dynamic web content works. When we use JavaScript (or a library/framework like jQuery, D3.js, React, etc.) to manipulate the DOM, you're programmatically changing this tree structure, which in turn changes what the user sees.
@@ -63,7 +64,7 @@ This is the basis of how dynamic web content works. When we use JavaScript (or a
 
 The **Virtual DOM** is a core concept in React and is what gives React its performance benefits. 
 
-In traditional JavaScript applications, when you want to change something on the page, you directly manipulate the DOM. For example, if you want to change the text in a div, you might do something like `document.getElementById('myDiv').innerText = 'New Text'`. This is straightforward, but it can be inefficient.
+In traditional JavaScript applications, when you want to change something on the page, you directly manipulate the DOM. For example, if you want to change the text in a div, you might do something like **`document.getElementById('myDiv').innerText = 'New Text'`**. This is straightforward, but it can be inefficient.
 
 **The reason it can be inefficient is that changes to the DOM are expensive in terms of performance. This is because every time you make a change, the browser needs to recalculate the layout, repaint the screen, and perform other tasks to reflect that change. If you're making lots of changes in quick succession, this can significantly slow down your application.**
 
