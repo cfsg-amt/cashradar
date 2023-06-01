@@ -1,25 +1,26 @@
-import logo from './logo.svg';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Radar from './Radar';
 import './App.css';
+
+const header1 = [50, 100, 150, 200, 250];
+const header2 = [250, 200, 150, 100, 50];
+const stockNames = ["Stock1", "Stock2", "Stock3", "Stock4", "Stock5"];
+
+const data = header1.map((value, i) => ({
+  x: value, 
+  y: header2[i], 
+  label: `Stock: ${stockNames[i]}\nX: ${value}\nY: ${header2[i]}`
+}));
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Radar data={data} />
     </div>
   );
 }
+
+ReactDOM.render(<App />, document.getElementById('root'));
 
 export default App;

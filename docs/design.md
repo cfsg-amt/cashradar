@@ -24,6 +24,8 @@
 I contend that one of our greatest advantages in having a backend **is its capacity to reduce the states (including data) that need to be stored on the front end.**
 This not only simplifies the front end but also decreases the likelihood of unforeseen errors. The front end tends to rely on numerous layers of abstraction, making debugging somewhat unpredictable at times. Hence, we should aim to minimize data storage on the front end as much as possible.
 
+Most libraries typically represent the scatter plot as a rectangle and often lack the flexibility to customize its shape, such as into a circle, or control the background color of the plot. However, while designing the radar chart, I have ingeniously situated the scatter plot within a black SVG circle, ensuring the axes and the circle are inscribed. To accomplish this, the diameter of the circle always corresponds to the shortest side (either length or width) when drawing the chart. This implies that the length of the scatter plot's square side should be calculated as 'cos45 * width'.
+
 
 ### Data Display
 

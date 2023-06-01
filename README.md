@@ -5,10 +5,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Technology Stack
 
 ### DOM
-* [docs/dom.md](docs/dom.md)
+* **[docs/dom.md](docs/dom.md)**
 
 ### React
-* [docs/react.md](docs/react.md)
+* **[docs/react.md](docs/react.md)**
 
 ## Available Scripts
 
