@@ -1,8 +1,24 @@
 import { VictoryChart, VictoryScatter, VictoryTooltip, VictoryVoronoiContainer, VictoryAxis } from 'victory';
+import { getRadarChartData } from './redux/handlers'
+import { useSelector } from 'react-redux';
 
-const Radar = ({ data }) => {
+const Radar = () => {
   const inactiveSize = 1; // size of data points when not hovered
   const activeSize = 3; // size of data points when hovered
+
+
+
+  const loading = useSelector(state => state.data.loading);
+  const selectedRegion = useSelector(state => state.data.region);
+  const stateData = useSelector(state => state.data);
+
+  // loading check should be after all useSelector calls
+  if (loading) {
+    return <div>Loading...</div>; // Render a loading indicator
+  }
+
+  const data = getRadarChartData(selectedRegion, stateData);
+  console.log('data: ', data);
 
   return (
     <svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid meet">
