@@ -1,5 +1,6 @@
 import React from 'react';
 import Radar from './Radar';
+import DataDisplay from './DataDisplay';
 import { runTests } from './ApiTest';
 import './App.css';
 
@@ -27,6 +28,7 @@ function App() {
   return (
     <div className="App">
       <button onClick={runTests}>Run Server Tests</button>
+      <DataDisplay />
       <Radar data={data} />
     </div>
   );
