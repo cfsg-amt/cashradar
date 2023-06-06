@@ -1,5 +1,6 @@
 import React from 'react';
 import Radar from './Radar';
+import { runTests } from './ApiTest';
 import './App.css';
 
 const colors = [
@@ -8,7 +9,7 @@ const colors = [
 ];
 
 // Generating random data
-const numPoints = 3000;
+const numPoints = 300;
 const stockNames = Array.from({ length: numPoints }, (_, i) => `Stock${i+1}`);
 const header1 = Array.from({ length: numPoints }, () => Math.random() * 250);
 const header2 = Array.from({ length: numPoints }, () => Math.random() * 250);
@@ -21,9 +22,11 @@ const data = stockNames.map((stock, i) => ({
   color: colors[i % colors.length], // Reuse colors when i exceeds the length of colors array
   label: `Stock: ${stock}\nCR: ${CRs[i]}\nX: ${header1[i]}\nY: ${header2[i]}`
 }));
+
 function App() {
   return (
     <div className="App">
+      <button onClick={runTests}>Run Server Tests</button>
       <Radar data={data} />
     </div>
   );

@@ -2,7 +2,7 @@ import { VictoryChart, VictoryScatter, VictoryTooltip, VictoryVoronoiContainer, 
 
 const Radar = ({ data }) => {
   const inactiveSize = 1; // size of data points when not hovered
-  const activeSize = 5; // size of data points when hovered
+  const activeSize = 3; // size of data points when hovered
 
   return (
     <svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid meet">

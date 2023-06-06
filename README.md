@@ -1,3 +1,10 @@
+The Radar project is essentially a data visualization venture that carries out analysis on source Excel files and projects the results on a browser. This project encompasses:
+
+1. A dynamic web application built with React, responsible for visualizing stock performance using a scatter plot.
+2. A backend server designed to interact with Excel files, ingest them into MongoDB, and handle requests from the client to fetch the data.
+
+The reason behind this design is rooted in the shortcomings of the Radar project's initial version. Initially, the project was a static website that required heavy front-end operations due to direct data transfer in CSV format with minimal pre-processing. This led to a convoluted code structure and cumbersome state manipulation on the front-end, making maintenance challenging. Besides, my lack of experience with tackling unexpected errors and dependency on underlying abstractions didn't allow me to concentrate on chart rendering. This is why, about a week ago, I decided to reboot the project with a client-server design. This allows the server to handle the majority of the state while the client, being stateless, can concentrate on chart rendering and user interaction.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
