@@ -6,10 +6,11 @@ const Radar = () => {
   const inactiveSize = 1; // size of data points when not hovered
   const activeSize = 3; // size of data points when hovered
 
-
-
   const loading = useSelector(state => state.data.loading);
   const selectedRegion = useSelector(state => state.data.region);
+  const selectedGroups = useSelector(state => state.data.selectedGroups);
+  const selectedX = useSelector(state => state.data.selectedX);
+  const selectedY = useSelector(state => state.data.selectedY);
   const stateData = useSelector(state => state.data);
 
   // loading check should be after all useSelector calls
@@ -17,7 +18,7 @@ const Radar = () => {
     return <div>Loading...</div>; // Render a loading indicator
   }
 
-  const data = getRadarChartData(selectedRegion, stateData);
+  const data = getRadarChartData(selectedRegion, selectedGroups, selectedX, selectedY, stateData);
   console.log('data: ', data);
 
   return (

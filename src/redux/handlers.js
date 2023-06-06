@@ -2,12 +2,11 @@ import axios from 'axios';
 
 import { setData, setHeaders, setLoading } from './dataSlice';
 
-export function getRadarChartData(selectedRegion, state) {
+export function getRadarChartData(selectedRegion, selectedGroups, selectedX, selectedY, state) {
   const colors = [
     "#e93f3a", "#eb4f4a", "#ed6562", "#f49b99", "#fce3e2",
     "#d0ecdb", "#86cda2", "#49b373", "#1ca152", "#00953b",
   ];
-  const selectedGroups = [1, 3, 4, 7, 8];
 
   // Get data for selected region
   if (!state || !state[selectedRegion]) {
@@ -27,21 +26,20 @@ export function getRadarChartData(selectedRegion, state) {
     const groupKey = `${selectedRegion}${groupIndex}`;
 
     // Check if data for the group exists
-    if (!regionData["基本分析分數"][groupKey] || !regionData["技術分析分數"][groupKey]) {
+    if (!regionData[selectedX][groupKey] || !regionData[selectedY][groupKey]) {
       continue;
     }
 
-    for (let i = 0; i < regionData["基本分析分數"][groupKey].length; i++) {
+    for (let i = 0; i < regionData[selectedX][groupKey].length; i++) {
       // The exact format will depend on your data structure and how you want to display it
       formattedData.push({
-        x: regionData["基本分析分數"][groupKey][i],
-        y: regionData["技術分析分數"][groupKey][i],
-        label: `Group: ${groupKey}, Index: ${i}, Name: ${regionData["name"][i]}`,
+        x: regionData[selectedX][groupKey][i],
+        y: regionData[selectedY][groupKey][i],
+        label: `Group: ${groupKey}\n Name: ${regionData["name"][groupKey][i]}`,
         color: colors[groupIndex],
       });
     }
   }
-  
   return formattedData;
 }
 
@@ -56,6 +54,7 @@ export function fetchInitialData(dispatch) {
     // Fetch headers
     axios.get(`${serverURL}/api/v1/headers/${collection}`)
       .then(response => {
+        console.log(`Headers for ${collection}: `, response.data);
         dispatch(setHeaders({ collectionName: collection, headers: response.data }));
       })
       .catch(error => console.error(`Error: ${error}`));
@@ -79,4 +78,26 @@ export function fetchInitialData(dispatch) {
     .catch((error) => console.error(`Error: ${error}`));
 
   console.log('fetchInitialData() done');
+}
+
+export function fetchAdditionalData(collection, header, dispatch) {
+  // Set loading to true
+  dispatch(setLoading(true));
+
+  // Fetch additional data
+  const encodedHeader = encodeURI(header);
+  axios.get(`${serverURL}/api/v1/${collection}/item?headers=${encodedHeader}`)
+    .then(response => {
+      // Save the fetched data
+      dispatch(setData({ collectionName: collection, header, data: response.data[header] }));
+      
+      // Set loading to false after successfully saving the data
+      dispatch(setLoading(false));
+    })
+    .catch(error => {
+      console.error(`Error: ${error}`);
+      
+      // Even if there's an error, we should still set loading to false
+      dispatch(setLoading(false));
+    });
 }
