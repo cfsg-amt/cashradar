@@ -13,7 +13,7 @@ export function getRadarChartData(selectedRegion, selectedGroups, selectedX, sel
     return [];
   }
 
-  const regionData = state[selectedRegion]; 
+  const regionData = state[state.region]; 
 
   // Check if data is loaded
   if (!regionData) {
@@ -35,7 +35,7 @@ export function getRadarChartData(selectedRegion, selectedGroups, selectedX, sel
       formattedData.push({
         x: regionData[selectedX][groupKey][i],
         y: regionData[selectedY][groupKey][i],
-        label: `Group: ${groupKey}\n Name: ${regionData["name"][groupKey][i]}`,
+        label: `Group: ${groupKey}\n Name: ${regionData["name"][groupKey][i]} \n ${selectedX}: ${regionData[selectedX][groupKey][i]} \n ${selectedY}: ${regionData[selectedY][groupKey][i]}`,
         color: colors[groupIndex],
       });
     }

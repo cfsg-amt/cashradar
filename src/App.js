@@ -4,7 +4,6 @@ import Filter from "./Filter";
 import { fetchInitialData } from './redux/handlers';
 
 import { useDispatch } from 'react-redux';
-import { runTests } from './ApiTest';
 import './App.css';
 
 function App() {
@@ -18,7 +17,6 @@ function App() {
 
   return (
     <div className="App">
-      <button onClick={runTests}>Run Server Tests</button>
       <Filter />
       <Radar />
     </div>

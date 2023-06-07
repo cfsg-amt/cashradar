@@ -1,4 +1,4 @@
-import { createSlice, current, createAsyncThunk } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { fetchAdditionalData } from './handlers';
 
 const initialState = {
