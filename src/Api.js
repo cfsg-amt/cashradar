@@ -1,7 +1,7 @@
 // api.js
 import axios from 'axios';
 
-const serverURL = 'http://127.0.0.1:8996';
+const serverURL = 'http://192.168.222.12:8996';
 
 export function fetchServerData() {
   return axios.get(serverURL)
