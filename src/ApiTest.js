@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { setData, setHeaders } from './redux/dataSlice';
 
-const serverURL = 'http://192.168.222.12:8996';
+const serverURL = 'http://192.168.222.12';
 const collections = ["Sec", "Ind", "StkSH", "StkSZ", "StkHK"];
 const initHeaders = ["基本分析分數", "技術分析分數", "時富雷達 (CR)", "行業", "name"];
 
