@@ -20,7 +20,7 @@ const IconWrapper = ({ children, onClick }) => {
   );
 };
 
-const RadarTab = () => {
+const RadarTab = ({ onIconClick }) => {
   const dispatch = useDispatch();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -80,7 +80,7 @@ const RadarTab = () => {
 
   const handleIconClick = () => {
     setIconMode(iconMode === 0 ? 1 : 0);
-    // Implement your handler logic here
+    onIconClick();
   };
 
   const gcSvgPath = "./static/gc.svg"
@@ -125,17 +125,17 @@ const RadarTab = () => {
   return (
     <Box
       sx={{
-        backgroundColor: isMobile ? 'white' : 'grey.300', // Main container background color
+        backgroundColor: isMobile ? 'white' : 'grey.100', // Main container background color
         flexGrow: 1,
       }}
     >
       <Box
         sx={{
-          backgroundColor: isMobile ? 'white' : 'grey.300', // Same color as the main container
+          backgroundColor: isMobile ? 'white' : 'grey.100', // Same color as the main container
           width: isMobile ? '100%' : '80%',
           margin: '0 auto',
           '@media (min-width:600px)': {
-            backgroundColor: 'grey.300',
+            backgroundColor: 'grey.100',
           },
         }}
       >
