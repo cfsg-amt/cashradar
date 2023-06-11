@@ -43,7 +43,7 @@ export function getRadarChartData(selectedRegion, selectedGroups, selectedX, sel
   return formattedData;
 }
 
-const serverURL = 'http://127.0.0.1:8080';
+const serverURL = 'http://127.0.0.1:8996';
 const collections = ["Sec", "Ind", "StkSH", "StkSZ", "StkHK"];
 const initHeaders = ["基本分析分數", "技術分析分數", "時富雷達 (CR)", "行業", "name"];
 
