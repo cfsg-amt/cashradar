@@ -14,7 +14,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const IconWrapper = ({ children, onClick }) => {
   return (
-    <Box sx={{ alignSelf: 'center' }} onClick={onClick}>
+    <Box sx={{ alignSelf: 'center', display: 'flex', alignItems: 'center' }} onClick={onClick}>
       {children}
     </Box>
   );
@@ -83,12 +83,19 @@ const RadarTab = () => {
     // Implement your handler logic here
   };
 
+  const gcSvgPath = "./static/gc.svg"
+  const usSvgPath = "./static/us.svg"
+
   const tabs1 = [
     <IconWrapper key="unfold-icon" onClick={handleIconClick}>
       {iconMode === 0 ? <UnfoldMoreIcon /> : <UnfoldLessIcon />}
     </IconWrapper>,
-    <Tab label="美國" key="1" disabled />,
-    <Tab label="中國" key="2" />,
+    <IconWrapper key="GC">
+      <img src={gcSvgPath} alt="GC Icon" style={{ height: '40px', width: 'auto', borderBottom: '2px solid red' }} />
+    </IconWrapper>,
+    <IconWrapper key="US">
+      <img src={usSvgPath} alt="US Icon" style={{ height: '35px', width: 'auto', filter: 'blur(1px)' }} />
+    </IconWrapper>,
     <IconWrapper key="separator1">
       <ShowChartOutlinedIcon />
     </IconWrapper>,
@@ -101,8 +108,12 @@ const RadarTab = () => {
     <IconWrapper key="unfold-icon" onClick={handleIconClick}>
       {iconMode === 0 ? <UnfoldMoreIcon /> : <UnfoldLessIcon />}
     </IconWrapper>,
-    <Tab label="美國" key="1" disabled />,
-    <Tab label="中國" key="2" />,
+    <IconWrapper key="GC">
+      <img src={gcSvgPath} alt="GC Icon" style={{ height: '40px', width: 'auto', borderBottom: '2px solid red' }} />
+    </IconWrapper>,
+    <IconWrapper key="US">
+      <img src={usSvgPath} alt="US Icon" style={{ height: '35px', width: 'auto', filter: 'blur(1px)' }} />
+    </IconWrapper>,
     <IconWrapper onClick={handleBack} key="separator2">
       <ArrowBackIosOutlinedIcon />
     </IconWrapper>,

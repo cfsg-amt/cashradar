@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Radar from './Radar';
 import Filter from "./Filter";
 import RadarTab from './RadarTab';
+import XYFilter from './XYFilter';
 import { fetchInitialData } from './redux/handlers';
 
 import { useDispatch } from 'react-redux';
@@ -20,6 +21,7 @@ function App() {
     <div className="App">
       <RadarTab />
       <Radar />
+      <XYFilter />
     </div>
   );
 }
