@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import Radar from './Radar';
 import Filter from "./Filter";
+import RadarTab from './RadarTab';
 import { fetchInitialData } from './redux/handlers';
 
 import { useDispatch } from 'react-redux';
@@ -17,7 +18,7 @@ function App() {
 
   return (
     <div className="App">
-      <Filter />
+      <RadarTab />
       <Radar />
     </div>
   );
