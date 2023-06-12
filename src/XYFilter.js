@@ -54,8 +54,8 @@ const XYFilter = () => {
               '& .MuiOutlinedInput-notchedOutline': {
                 borderColor: 'black', 
               },
-              '& .MuiOutlinedInput-input': {
-                color: 'black'
+              "& .MuiOutlinedInput-input": { 
+                color: "black",
               },
               '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
                 borderColor: 'black' 

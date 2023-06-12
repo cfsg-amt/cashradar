@@ -73,7 +73,8 @@ const dataSlice = createSlice({
     },
 
     setSearchName(state, action) {
-      state.searchName = action.payload;
+      state.searchName = action.payload.title;
+      console.log(state.searchName);
     },
 
     setSelectedX(state, action) {

@@ -4,6 +4,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSearchName } from './redux/dataSlice';
 import Box from '@mui/material/Box';
+import GlobalStyles from '@mui/system/GlobalStyles';
 
 export default function Search() {
   const dispatch = useDispatch();
@@ -14,17 +15,28 @@ export default function Search() {
     return { region, collections: { Sec, Ind, StkSH, StkSZ, StkHK }};
   });
 
+
   const options = Object.keys(collections[region].name || {}).flatMap((groupKey) => {
+    // Take the group number from the key, assuming the format is always 'SecX'
+    const groupNumber = groupKey.replace(/^\D+/g, '');
+
+    // Create the custom label
+    const groupLabel = `時富雷達分數: ${groupNumber}.x`;
+
     return collections[region].name[groupKey].map((name) => {
       return {
-        groupLabel: groupKey,
+        groupLabel,
         title: name,
       };
     });
   });
 
   const handleChange = (event, value) => {
-    dispatch(setSearchName(value));
+    if (value !== null) {
+      dispatch(setSearchName(value));
+    } else {
+      dispatch(setSearchName({ title: '', groupLabel: '' }));
+    }
   };
 
   // Conditionally set the label based on the region
@@ -52,9 +64,17 @@ export default function Search() {
 
   return (
     <Box sx={{ margin: '10px auto 0', width: '100%', maxWidth: 700 }}>
+      <GlobalStyles
+        styles={{
+          '.MuiAutocomplete-option': {
+            fontFamily: "'SimSun', serif",
+          },
+        }}
+      />
       <Autocomplete
         id="grouped-demo"
         options={options.sort((a, b) => -b.groupLabel.localeCompare(a.groupLabel))}
+        isOptionEqualToValue={(option, value) => option.title === value.title && option.groupLabel === value.groupLabel}
         groupBy={(option) => option.groupLabel}
         getOptionLabel={(option) => option.title}
         sx={{ 
@@ -69,24 +89,34 @@ export default function Search() {
             },
           }, 
           "& .MuiOutlinedInput-input": { 
-            color: "black" 
+            color: "black",
+            fontFamily: "'SimSun', serif",
+            fontWeight: "bold",
           },
           "& .MuiFormLabel-root": {
             color: "black",
             "&.Mui-focused": {
               color: "black",
             },
+            fontFamily: "'SimSun', serif",
+            fontWeight: "bold",
           },
           "& .MuiAutocomplete-popupIndicator": {
-            color: "black"
+            color: "black",
+            fontFamily: "'SimSun', serif",
+            fontWeight: "bold",
+          },
+          "& .MuiAutocomplete-option": {
+            fontFamily: "'SimSun', serif",
+            fontWeight: "bold",
           },
           "& .MuiAutocomplete-listbox": {
             backgroundColor: "white",
-            "& .MuiAutocomplete-option:first-child": {
+            "& .MuiAutocomplete-option:first-of-type": {
               borderTopLeftRadius: "25px",
               borderTopRightRadius: "25px",
             },
-            "& .MuiAutocomplete-option:last-child": {
+            "& .MuiAutocomplete-option:last-of-type": {
               borderBottomLeftRadius: "25px",
               borderBottomRightRadius: "25px",
             }
