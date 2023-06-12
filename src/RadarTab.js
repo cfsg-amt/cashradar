@@ -125,17 +125,17 @@ const RadarTab = ({ onIconClick }) => {
   return (
     <Box
       sx={{
-        backgroundColor: isMobile ? 'white' : 'grey.100', // Main container background color
+        backgroundColor: isMobile ? 'white' : 'grey.50', // Main container background color
         flexGrow: 1,
       }}
     >
       <Box
         sx={{
-          backgroundColor: isMobile ? 'white' : 'grey.100', // Same color as the main container
+          backgroundColor: isMobile ? 'white' : 'grey.50', // Same color as the main container
           width: isMobile ? '100%' : '80%',
           margin: '0 auto',
           '@media (min-width:600px)': {
-            backgroundColor: 'grey.100',
+            backgroundColor: 'grey.50',
           },
         }}
       >

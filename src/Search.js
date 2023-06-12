@@ -1,43 +1,103 @@
 import React from 'react';
-import Paper from '@mui/material/Paper';
-import InputBase from '@mui/material/InputBase';
-import IconButton from '@mui/material/IconButton';
-import SearchIcon from '@mui/icons-material/Search';
-import { useDispatch } from 'react-redux';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+import { useDispatch, useSelector } from 'react-redux';
 import { setSearchName } from './redux/dataSlice';
 import Box from '@mui/material/Box';
 
-const SearchComponent = () => {
+export default function Search() {
   const dispatch = useDispatch();
-  const [inputValue, setInputValue] = React.useState('');
 
-  const handleChange = (event) => {
-    setInputValue(event.target.value);
+  // getting region and grouped name data from store
+  const { region, collections } = useSelector((state) => {
+    const { region, Sec, Ind, StkSH, StkSZ, StkHK } = state.data;
+    return { region, collections: { Sec, Ind, StkSH, StkSZ, StkHK }};
+  });
+
+  const options = Object.keys(collections[region].name || {}).flatMap((groupKey) => {
+    return collections[region].name[groupKey].map((name) => {
+      return {
+        groupLabel: groupKey,
+        title: name,
+      };
+    });
+  });
+
+  const handleChange = (event, value) => {
+    dispatch(setSearchName(value));
   };
 
-  const handleSearch = () => {
-    dispatch(setSearchName(inputValue));
-  };
+  // Conditionally set the label based on the region
+  let label;
+  switch(region) {
+    case 'Ind':
+      label = 'Search for industries';
+      break;
+    case 'Sec':
+      label = 'Search for sectors';
+      break;
+    case 'StkSH':
+      label = 'Search for Shanghai stocks';
+      break;
+    case 'StkSZ':
+      label = 'Search for Shenzhen stocks';
+      break;
+    case 'StkHK':
+      label = 'Search for Hong Kong stocks';
+      break;
+    default:
+      label = 'Search';
+      break;
+  }
 
   return (
-    <Box display="flex" justifyContent="center" m={1} p={1}>
-      <Paper 
-        component="form" 
-        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', maxWidth: 800 }} // set maximum width here
-      >
-        <InputBase
-          sx={{ ml: 1, flex: 1 }}
-          placeholder="Search for stocks, industries, or sectors"
-          inputProps={{ 'aria-label': 'Search for stocks, industries or sectors' }}
-          value={inputValue}
-          onChange={handleChange}
-        />
-        <IconButton type="button" sx={{ p: '10px' }} aria-label="search" onClick={handleSearch}>
-          <SearchIcon />
-        </IconButton>
-      </Paper>
+    <Box sx={{ margin: '10px auto 0', width: '100%', maxWidth: 700 }}>
+      <Autocomplete
+        id="grouped-demo"
+        options={options.sort((a, b) => -b.groupLabel.localeCompare(a.groupLabel))}
+        groupBy={(option) => option.groupLabel}
+        getOptionLabel={(option) => option.title}
+        sx={{ 
+          width: '100%', 
+          "& .MuiOutlinedInput-root": { 
+            borderColor: "black", 
+            "&.Mui-focused fieldset": { 
+              borderColor: "black" 
+            },
+            "& fieldset": {
+              borderColor: "black",
+            },
+          }, 
+          "& .MuiOutlinedInput-input": { 
+            color: "black" 
+          },
+          "& .MuiFormLabel-root": {
+            color: "black",
+            "&.Mui-focused": {
+              color: "black",
+            },
+          },
+          "& .MuiAutocomplete-popupIndicator": {
+            color: "black"
+          },
+          "& .MuiAutocomplete-listbox": {
+            backgroundColor: "white",
+            "& .MuiAutocomplete-option:first-child": {
+              borderTopLeftRadius: "25px",
+              borderTopRightRadius: "25px",
+            },
+            "& .MuiAutocomplete-option:last-child": {
+              borderBottomLeftRadius: "25px",
+              borderBottomRightRadius: "25px",
+            }
+          },
+          "& .MuiPaper-root": {
+            backgroundColor: "white"
+          }
+        }}
+        onChange={handleChange}
+        renderInput={(params) => <TextField {...params} label={label} variant="outlined" />}
+      />
     </Box>
   );
-};
-
-export default SearchComponent;
+}

@@ -59,10 +59,6 @@ const dataSlice = createSlice({
       state.region = action.payload;
     },
 
-    setSearchName(state, action) {
-      state.searchName = action.payload;
-    },
-
     setHeaders(state, action) {
       const { collectionName, headers } = action.payload;
       for (let header of headers) {
@@ -74,6 +70,10 @@ const dataSlice = createSlice({
 
     setSelectedGroups(state, action) {
       state.selectedGroups = action.payload;
+    },
+
+    setSearchName(state, action) {
+      state.searchName = action.payload;
     },
 
     setSelectedX(state, action) {

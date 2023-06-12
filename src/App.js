@@ -13,7 +13,7 @@ function App() {
   const theme = useTheme();
   const dispatch = useDispatch();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  const tabletBackgroundColor = theme.palette.grey[100];
+  const tabletBackgroundColor = theme.palette.grey[50];
 
   const [isVisible, setIsVisible] = useState(false);
 
@@ -47,8 +47,6 @@ function App() {
             </Grid>
           </Grid>
         )}
-      </div>
-      <div>
         <Search />
       </div>
     </div>
