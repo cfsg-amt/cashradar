@@ -65,7 +65,7 @@ const XYFilter = () => {
         }
         renderValue={(selected) => {
           if (selected === "") {
-            return <em>Placeholder</em>;
+            return <em>placeholder</em>;
           }
           return selected;
         }}
