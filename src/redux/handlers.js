@@ -112,3 +112,15 @@ export function fetchAdditionalData(collection, header, dispatch) {
       dispatch(setLoading(false));
     });
 }
+
+
+export function fetchStockDetails(collection, stockName) {
+  return axios.get(`${serverURL}/api/v1/${collection}/item/${stockName}`)
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.error(`Error: ${error}`);
+      throw error;
+    });
+}

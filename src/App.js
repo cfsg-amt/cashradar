@@ -3,13 +3,15 @@ import Radar from './Radar';
 import RadarTab from './RadarTab';
 import XYFilter from './XYFilter';
 import Search from './Search';
+import Details from './Details';
 import { AppBar, Toolbar, IconButton } from "@mui/material";
 import { fetchInitialData } from './redux/handlers';
-import { Grid, useMediaQuery, useTheme } from "@mui/material";
+import { Grid, useMediaQuery } from "@mui/material";
 import { useDispatch } from 'react-redux';
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './theme'; // adjust the path if necessary
 
 function App() {
-  const theme = useTheme();
   const dispatch = useDispatch();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const tabletBackgroundColor = theme.palette.grey[50];
@@ -26,6 +28,7 @@ function App() {
   }, [dispatch]);
 
   return (
+    <ThemeProvider theme={theme}>
     <div>
       <div className="App" style={{backgroundColor: isMobile ? 'white' : tabletBackgroundColor}}>
         <AppBar position="static" style={{ backgroundColor: '#FF5733' }}>
@@ -47,8 +50,10 @@ function App() {
           </Grid>
         )}
         <Search />
+        <Details />
       </div>
     </div>
+    </ThemeProvider>
   );
 }
 
