@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { setData, setHeaders, setLoading } from './dataSlice';
+import { setData, setMinMaxData, setHeaders, setLoading } from './dataSlice';
 
 export function getRadarChartData(selectedRegion, selectedGroups, selectedX, selectedY, state) {
   const colors = [
@@ -43,8 +43,8 @@ export function getRadarChartData(selectedRegion, selectedGroups, selectedX, sel
   return formattedData;
 }
 
-const serverURL = 'http://192.168.222.12';
-// const serverURL = 'http://localhost:8996';
+// const serverURL = 'http://192.168.222.12';
+const serverURL = 'http://localhost:8996';
 const collections = ["Sec", "Ind", "StkSH", "StkSZ", "StkHK"];
 const initHeaders = ["基本分析分數", "技術分析分數", "時富雷達 (CR)", "行業", "name"];
 
@@ -60,6 +60,16 @@ export function fetchInitialData(dispatch) {
       })
       .catch(error => console.error(`Error: ${error}`));
 
+    // Fetch min max data for each collection
+
+    // Fetch min max data for each collection
+    axios.get(`${serverURL}/api/v1/minmax/${collection}`)
+      .then(response => {
+        console.log(`MinMaxData for ${collection}: `, response.data);
+        dispatch(setMinMaxData({ collectionName: collection, minMaxData: response.data }));
+      })
+
+  .catch(error => console.error(`Error: ${error}`));
     // Fetch initial data
     const encodedHeaders = encodeURI(initHeaders.join(','));
     let promise = axios.get(`${serverURL}/api/v1/${collection}/item?headers=${encodedHeaders}`)

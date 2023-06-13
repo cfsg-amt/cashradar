@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import Radar from './Radar';
-import Filter from "./Filter";
 import RadarTab from './RadarTab';
 import XYFilter from './XYFilter';
 import Search from './Search';

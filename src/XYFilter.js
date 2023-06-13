@@ -65,7 +65,7 @@ const XYFilter = () => {
         }
         renderValue={(selected) => {
           if (selected === "") {
-            return <em>placeholder</em>;
+            return <em>指標</em>;
           }
           return selected;
         }}
@@ -81,7 +81,7 @@ const XYFilter = () => {
         inputProps={{ 'aria-label': 'Without label' }}
       >
         <MenuItem disabled value="">
-          <em>Placeholder</em>
+          <em>指標</em>
         </MenuItem>
         {numHeaders.map((header, index) => (
           <MenuItem key={index} value={header} sx={{ fontFamily: 'SimSun', fontWeight: 'bold' }}>{header}</MenuItem>

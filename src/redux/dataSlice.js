@@ -3,11 +3,11 @@ import { fetchAdditionalData } from './handlers';
 
 const initialState = {
   // collections
-  Sec: {},
-  Ind: {},
-  StkSH: {},
-  StkSZ: {},
-  StkHK: {},
+  Sec: { minMaxData: {} },
+  Ind: { minMaxData: {} },
+  StkSH: { minMaxData: {} },
+  StkSZ: { minMaxData: {} },
+  StkHK: { minMaxData: {} },
 
   // filters
   region: 'Sec',
@@ -51,6 +51,11 @@ const dataSlice = createSlice({
       state[action.payload.collectionName][action.payload.header] = action.payload.data;
     },
 
+    setMinMaxData(state, action) {
+      const { collectionName, minMaxData } = action.payload;
+      state[collectionName].minMaxData = minMaxData;
+    },
+
     setLoading(state, action) {
       state.loading = action.payload;
     },
@@ -87,6 +92,6 @@ const dataSlice = createSlice({
   },
 });
 
-export const { setData, setRegion, setSearchName, setHeaders, setLoading, setSelectedGroups, setSelectedX, setSelectedY } = dataSlice.actions;
+export const { setData, setMinMaxData, setRegion, setSearchName, setHeaders, setLoading, setSelectedGroups, setSelectedX, setSelectedY } = dataSlice.actions;
 
 export default dataSlice.reducer;

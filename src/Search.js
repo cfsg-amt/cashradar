@@ -43,22 +43,22 @@ export default function Search() {
   let label;
   switch(region) {
     case 'Ind':
-      label = 'Search for industries';
+      label = '檢索行業';
       break;
     case 'Sec':
-      label = 'Search for sectors';
+      label = '檢索板塊';
       break;
     case 'StkSH':
-      label = 'Search for Shanghai stocks';
+      label = '檢索上海股票';
       break;
     case 'StkSZ':
-      label = 'Search for Shenzhen stocks';
+      label = '檢索深圳股票';
       break;
     case 'StkHK':
-      label = 'Search for Hong Kong stocks';
+      label = '檢索香港股票';
       break;
     default:
-      label = 'Search';
+      label = '輸入檢索名稱';
       break;
   }
 
