@@ -38,6 +38,7 @@ export function getRadarChartData(selectedRegion, selectedGroups, selectedX, sel
         x: regionData[selectedX][groupKey][i],
         y: regionData[selectedY][groupKey][i],
         label: `名稱: ${regionData["name"][groupKey][i]} \n 時富雷達分數: ${radarScore} \n ${selectedX}: ${regionData[selectedX][groupKey][i]} \n ${selectedY}: ${regionData[selectedY][groupKey][i]}`,
+        name: regionData["name"][groupKey][i],
         color: colors[groupIndex],
       });
     }

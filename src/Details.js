@@ -31,6 +31,15 @@ const CustomColorLinearProgress = styled(LinearProgress)(({ theme, value }) => {
   });
 });
 
+const FourthAccordionColorLinearProgress = styled(LinearProgress)(({ theme }) => ({
+  height: 20,
+  borderRadius: 5,
+  backgroundColor: theme.palette.grey[300],
+  '& .MuiLinearProgress-bar': {
+    backgroundColor: '#848884', // color of the progress bar for the 4th accordion
+  },
+}));
+
 // Apply font and color
 const CustomTypography = styled(Typography)(({ theme }) => ({
   color: theme.palette.grey[800],
@@ -94,6 +103,7 @@ const Details = () => {
           </AccordionSummary>
         </Accordion>
       )}
+
       {stockData && accordionGroups.map((group, index) => (
         <Accordion key={index}>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
@@ -116,6 +126,7 @@ const Details = () => {
           </AccordionSummary>
           <AccordionDetails>
             <Grid container spacing={2}>
+
               {group.fields.slice(index < 2 ? 1 : 0).map(field => (
                 <Grid item xs={12} sm={6} md={4} key={field}>
                   <Card variant="outlined">
@@ -130,12 +141,19 @@ const Details = () => {
                           </Tooltip>
                         </Grid>
                       </Grid>
-                      <Typography variant="body1" color="text.secondary">{stockData[field]}</Typography>
-                      <ColorLinearProgress 
-                        variant="determinate" 
-                        value={(stockData[field] - minMaxData.min[field]) / (minMaxData.max[field] - minMaxData.min[field]) * 100} 
-                        index={index} 
-                      />
+                      <CustomTypography variant="body1" color="text.secondary">{stockData[field]}</CustomTypography>
+                      {index !== 2 ?
+                        <ColorLinearProgress 
+                          variant="determinate" 
+                          value={(stockData[field] - minMaxData.min[field]) / (minMaxData.max[field] - minMaxData.min[field]) * 100} 
+                          index={index} 
+                        />
+                        :
+                        <FourthAccordionColorLinearProgress 
+                          variant="determinate" 
+                          value={(stockData[field] - minMaxData.min[field]) / (minMaxData.max[field] - minMaxData.min[field]) * 100} 
+                        />
+                      }
                     </CardContent>
                   </Card>
                 </Grid>

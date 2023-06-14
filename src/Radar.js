@@ -1,12 +1,14 @@
 import { VictoryChart, VictoryScatter, VictoryTooltip, VictoryVoronoiContainer, VictoryAxis, VictoryZoomContainer } from 'victory';
 import { getRadarChartData } from './redux/handlers'
 import { CircularProgress } from '@mui/material';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSearchName } from './redux/dataSlice';
 
 const Radar = () => {
   const inactiveSize = 1; // size of data points when not hovered
   const activeSize = 3; // size of data points when hovered
 
+  const dispatch = useDispatch();
   const loading = useSelector(state => state.data.loading);
   const selectedRegion = useSelector(state => state.data.region);
   const selectedGroups = useSelector(state => state.data.selectedGroups);
@@ -62,6 +64,17 @@ const Radar = () => {
             {
               target: 'data',
               eventHandlers: {
+                onClick: () => {
+                  return [
+                    {
+                      target: 'data',
+                      mutation: (props) => {
+                        dispatch(setSearchName({title: props.datum.name}));
+                        return null;
+                      }
+                    }
+                  ];
+                },
                 onMouseOver: () => {
                   return [
                     {

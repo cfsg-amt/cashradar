@@ -15,6 +15,7 @@ export default function Search() {
     return { region, collections: { Sec, Ind, StkSH, StkSZ, StkHK }};
   });
 
+  const searchName = useSelector(state => state.data.searchName) || '';
 
   const options = Object.keys(collections[region].name || {}).flatMap((groupKey) => {
     // Take the group number from the key, assuming the format is always 'SecX'
@@ -73,10 +74,11 @@ export default function Search() {
       />
       <Autocomplete
         id="grouped-demo"
+        value={options.find(option => option.title === searchName) || null}
+        getOptionLabel={(option) => (option ? option.title : "")}
         options={options.sort((a, b) => -b.groupLabel.localeCompare(a.groupLabel))}
         isOptionEqualToValue={(option, value) => option.title === value.title && option.groupLabel === value.groupLabel}
         groupBy={(option) => option.groupLabel}
-        getOptionLabel={(option) => option.title}
         sx={{ 
           width: '100%', 
           "& .MuiOutlinedInput-root": { 
