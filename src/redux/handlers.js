@@ -26,16 +26,18 @@ export function getRadarChartData(selectedRegion, selectedGroups, selectedX, sel
     const groupKey = `${selectedRegion}${groupIndex}`;
 
     // Check if data for the group exists
-    if (!regionData[selectedX][groupKey] || !regionData[selectedY][groupKey]) {
+    if (!regionData[selectedX][groupKey] || !regionData[selectedY][groupKey] || !regionData["時富雷達 (CR)"][groupKey]) {
       continue;
     }
 
     for (let i = 0; i < regionData[selectedX][groupKey].length; i++) {
+      const radarScore = regionData["時富雷達 (CR)"][groupKey][i];
+
       // The exact format will depend on your data structure and how you want to display it
       formattedData.push({
         x: regionData[selectedX][groupKey][i],
         y: regionData[selectedY][groupKey][i],
-        label: `Group: ${groupKey}\n Name: ${regionData["name"][groupKey][i]} \n ${selectedX}: ${regionData[selectedX][groupKey][i]} \n ${selectedY}: ${regionData[selectedY][groupKey][i]}`,
+        label: `名稱: ${regionData["name"][groupKey][i]} \n 時富雷達分數: ${radarScore} \n ${selectedX}: ${regionData[selectedX][groupKey][i]} \n ${selectedY}: ${regionData[selectedY][groupKey][i]}`,
         color: colors[groupIndex],
       });
     }

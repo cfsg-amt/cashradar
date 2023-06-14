@@ -1,5 +1,6 @@
-import { VictoryChart, VictoryScatter, VictoryTooltip, VictoryVoronoiContainer, VictoryAxis } from 'victory';
+import { VictoryChart, VictoryScatter, VictoryTooltip, VictoryVoronoiContainer, VictoryAxis, VictoryZoomContainer } from 'victory';
 import { getRadarChartData } from './redux/handlers'
+import { CircularProgress } from '@mui/material';
 import { useSelector } from 'react-redux';
 
 const Radar = () => {
@@ -15,7 +16,7 @@ const Radar = () => {
 
   // loading check should be after all useSelector calls
   if (loading) {
-    return <div>Loading...</div>; // Render a loading indicator
+    return <CircularProgress />;
   }
 
   const data = getRadarChartData(selectedRegion, selectedGroups, selectedX, selectedY, stateData);
@@ -45,11 +46,18 @@ const Radar = () => {
               renderInPortal={false}
               orientation="top"
               pointerLength={0}
-              cornerRadius={0}
-              flyoutStyle={{ fill: "white" }}
+              cornerRadius={5} // You can set corner radius here
+              flyoutStyle={{ fill: "white", stroke: "lightgrey", strokeWidth: 1 }} // You can adjust the box border color and width here
+              // You can adjust the size and other styles here:
+              style={[ 
+                { fill: "black", fontWeight: "bold", fontSize: 8 }, // styles for the first line of the tooltip
+                { fill: "black", fontSize: 8 }, // styles for the second line of the tooltip
+                { fill: "black", fontSize: 8 }, // styles for the third line of the tooltip
+                { fill: "black", fontSize: 8 }, // styles for the fourth line of the tooltip
+              ]}
+              flyoutDimensions={{ width: 100, height: 100 }} // You can set tooltip box dimensions here
             />
           }
-
           events={[
             {
               target: 'data',
