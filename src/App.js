@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Radar from './Radar';
 import RadarTab from './RadarTab';
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import XYFilter from './XYFilter';
 import Search from './Search';
 import Details from './Details';
@@ -53,17 +53,17 @@ function App() {
               <IconButton edge="end" color="inherit" aria-controls="simple-menu" aria-haspopup="true" onClick={handleMenuClick}>
                 <MenuIcon /> {/* Replace button text with Menu icon */}
               </IconButton>
-              <Menu
-                id="simple-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={Boolean(anchorEl)}
-                onClose={handleMenuClose}
-              >
-                <MenuItem onClick={handleMenuClose} component={Link} to="/news/index.html">主頁</MenuItem>
-                <MenuItem onClick={handleMenuClose} component={Link} to="/news/index.html">宏觀經濟</MenuItem>
-                <MenuItem onClick={handleMenuClose} component={Link} to="/">時富雷達</MenuItem>
-              </Menu>
+                <Menu
+                  id="simple-menu"
+                  anchorEl={anchorEl}
+                  keepMounted
+                  open={Boolean(anchorEl)}
+                  onClose={handleMenuClose}
+                >
+                  <MenuItem onClick={handleMenuClose} component="a" href="/news/index.html">主頁</MenuItem>
+                  <MenuItem onClick={handleMenuClose} component="a" href="/news/index.html">宏觀經濟</MenuItem>
+                  <MenuItem onClick={handleMenuClose} component={Link} to="/">時富雷達</MenuItem>
+                </Menu>
             </Toolbar>
           </AppBar>
           <RadarTab onIconClick={handleIconClick} />  {/* pass the function as a prop */}
