@@ -58,8 +58,8 @@ function App() {
                 open={Boolean(anchorEl)}
                 onClose={handleMenuClose}
               >
-                <MenuItem onClick={handleMenuClose} component={Link} to="/news">主頁</MenuItem>
-                <MenuItem onClick={handleMenuClose} component={Link} to="/news">宏觀經濟</MenuItem>
+                <MenuItem onClick={handleMenuClose} component={Link} to="/news/index.html">主頁</MenuItem>
+                <MenuItem onClick={handleMenuClose} component={Link} to="/news/index.html">宏觀經濟</MenuItem>
                 <MenuItem onClick={handleMenuClose} component={Link} to="/">時富雷達</MenuItem>
               </Menu>
             </Toolbar>
