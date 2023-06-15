@@ -6,6 +6,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import dataReducer from './redux/dataSlice';
 import App from './App';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const store = configureStore({
   reducer: {
@@ -22,7 +23,9 @@ const theme = createTheme({
 createRoot(document.getElementById('root')).render(
   <ThemeProvider theme={theme}>
     <Provider store={store}>
-      <App />
+      <Router>
+        <App />
+      </Router>
     </Provider>
   </ThemeProvider>
 );

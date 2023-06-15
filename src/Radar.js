@@ -22,7 +22,6 @@ const Radar = () => {
   }
 
   const data = getRadarChartData(selectedRegion, selectedGroups, selectedX, selectedY, stateData);
-  console.log('data: ', data);
 
   return (
     <svg viewBox="0 0 300 300" preserveAspectRatio="xMidYMid meet">

@@ -36,7 +36,7 @@ const FourthAccordionColorLinearProgress = styled(LinearProgress)(({ theme }) =>
   borderRadius: 5,
   backgroundColor: theme.palette.grey[300],
   '& .MuiLinearProgress-bar': {
-    backgroundColor: '#848884', // color of the progress bar for the 4th accordion
+    backgroundColor: '#878788', // color of the progress bar for the 4th accordion
   },
 }));
 
