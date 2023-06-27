@@ -12,6 +12,8 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 import { setRegion } from './redux/dataSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
+import { makeStyles } from "@material-ui/core/styles";
+
 const IconWrapper = ({ children, onClick }) => {
   return (
     <Box sx={{ alignSelf: 'center', display: 'flex', alignItems: 'center' }} onClick={onClick}>
@@ -20,7 +22,17 @@ const IconWrapper = ({ children, onClick }) => {
   );
 };
 
+const useTabStyles = makeStyles({
+  root: {
+    justifyContent: "center"
+  },
+  scroller: {
+    flexGrow: "0"
+  }
+});
+
 const RadarTab = ({ onIconClick }) => {
+  const classes = useTabStyles();
   const dispatch = useDispatch();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -134,6 +146,7 @@ const RadarTab = ({ onIconClick }) => {
           backgroundColor: isMobile ? 'white' : 'grey.50', // Same color as the main container
           width: isMobile ? '100%' : '80%',
           margin: '0 auto',
+          display: 'flex',
           '@media (min-width:600px)': {
             backgroundColor: 'grey.50',
           },
@@ -141,6 +154,7 @@ const RadarTab = ({ onIconClick }) => {
       >
         <Tabs
           value={value}
+          classes={{ root: classes.root, scroller: classes.scroller }}
           onChange={handleChange}
           variant="scrollable"
           scrollButtons={false}
