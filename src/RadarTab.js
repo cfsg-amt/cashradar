@@ -142,6 +142,8 @@ const RadarTab = ({ onIconClick }) => {
         <Tabs
           value={value}
           onChange={handleChange}
+          variant="scrollable"
+          scrollButtons={false}
           centered
           sx={{
             '& .MuiTab-root': {
