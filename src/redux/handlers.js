@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { setData, setMinMaxData, setHeaders, setLoading } from './dataSlice';
+import { setData, setMinMaxData, setHeaders, setLoading, setHashedPassword } from './dataSlice';
 
 export function getRadarChartData(selectedRegion, selectedGroups, selectedX, selectedY, state) {
   const colors = [
@@ -53,7 +53,25 @@ const initHeaders = ["基本分析分數", "技術分析分數", "時富雷達 (
 
 export function fetchInitialData(dispatch) {
   console.log("fetchInitialData() start")
+
   let promises = [];
+  
+  // Fetch the hashed password
+  axios.get(`${serverURL}/api/v1/kv/login/hashedpwd`)
+    .then(response => {
+      console.log('Hashed password: ', response.data);
+      dispatch(setHashedPassword(response.data));
+      // set hashed password to local storage
+      if (localStorage.getItem('hashedPassword') !== response.data) {
+        // if hashed password is changed, set isAuthenticated to false
+        // so that user will be redirected to login page
+        console.log("hashed password changed, set isAuthenticated to false");
+        localStorage.setItem('isAuthenticated', 'false');
+      }
+      localStorage.setItem('hashedPassword', response.data);
+    })
+    .catch(error => console.error(`Error: ${error}`));
+
   for (let collection of collections) {
     // Fetch headers
     axios.get(`${serverURL}/api/v1/headers/${collection}`)

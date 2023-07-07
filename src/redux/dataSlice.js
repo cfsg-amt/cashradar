@@ -20,6 +20,8 @@ const initialState = {
   selectedX: "基本分析分數",
   selectedY: "技術分析分數",
 
+  hashedPassword: '',
+
   loading: true,
 };
 
@@ -49,6 +51,10 @@ const dataSlice = createSlice({
   reducers: {
     setData(state, action) {
       state[action.payload.collectionName][action.payload.header] = action.payload.data;
+    },
+
+    setHashedPassword(state, action) {
+      state.hashedPassword = action.payload;
     },
 
     setMinMaxData(state, action) {
@@ -92,6 +98,6 @@ const dataSlice = createSlice({
   },
 });
 
-export const { setData, setMinMaxData, setRegion, setSearchName, setHeaders, setLoading, setSelectedGroups, setSelectedX, setSelectedY } = dataSlice.actions;
+export const { setData, setMinMaxData, setRegion, setSearchName, setHeaders, setLoading, setSelectedGroups, setSelectedX, setSelectedY, setHashedPassword } = dataSlice.actions;
 
 export default dataSlice.reducer;

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Radar from './Radar';
+import Pwd from './Pwd';
 import RadarTab from './RadarTab';
 import { BrowserRouter as Router, Route, Routes, useNavigate, Link, Navigate } from "react-router-dom";
 import XYFilter from './XYFilter';
@@ -15,7 +16,6 @@ import Login from './Login';
 import MenuIcon from '@mui/icons-material/Menu'; // import Menu icon
 
 function AuthenticatedApp({ handleMenuClick, anchorEl, handleMenuClose, isVisible, handleIconClick }) {
-  // Rest of your states and hooks...
   const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const tabletBackgroundColor = theme.palette.grey[50];
@@ -93,6 +93,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/changepwd" element={<Pwd />} />
           <Route path="/" element={
             <AuthenticatedApp 
               handleMenuClick={handleMenuClick} 
