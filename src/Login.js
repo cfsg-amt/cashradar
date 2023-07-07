@@ -74,7 +74,7 @@ function Login() {
       <br></br>
       <form onSubmit={handleSubmit} style={styles.form}>
         <label>
-          請輸入密碼以访问：
+          請輸入密碼：
           <input 
             type="password" 
             value={passwordInput} 
