@@ -190,7 +190,15 @@ const Details = () => {
                           </Tooltip>
                         </Grid>
                       </Grid>
-                      <CustomTypography variant="body1" color="text.secondary">{stockData[field]}</CustomTypography>
+                      <CustomTypography variant="body1" color="text.secondary">
+                        {field === "大行中位目標回報"
+                          ? (!stockData[field] || isNaN(stockData[field])) 
+                            ? "N/A"
+                            : `${(Number(stockData[field]) * 100).toFixed(2)}%`
+                          : (!stockData[field] || isNaN(stockData[field]))
+                            ? "N/A"
+                            : Number(stockData[field]).toFixed(2)}
+                      </CustomTypography>
                       {index !== 3 ?
                         <ColorLinearProgress 
                           variant="determinate" 
