@@ -135,7 +135,9 @@ const Details = () => {
               <Grid item xs={12}>
                 <CustomColorLinearProgress
                   variant="determinate"
-                  value={(stockData["時富雷達 (CR)"] / 10) * 100}
+                  value={!stockData["時富雷達 (CR)"] || isNaN(stockData["時富雷達 (CR)"]) 
+                    ? 0 
+                    : (stockData["時富雷達 (CR)"] / 10) * 100}
                 />
               </Grid>
             </Grid>
@@ -161,12 +163,13 @@ const Details = () => {
                   ) : group.title}
                 </CustomTypography>
               </Grid>
-
               {index < 3 && 
                 <Grid item xs={12}>
                   <ColorLinearProgress
                     variant="determinate"
-                    value={(stockData[group.fields[0]] - minMaxData.min[group.fields[0]]) / (minMaxData.max[group.fields[0]] - minMaxData.min[group.fields[0]]) * 100}
+                    value={!stockData[group.fields[0]] || isNaN(stockData[group.fields[0]]) 
+                      ? 0 
+                      : (stockData[group.fields[0]] - minMaxData.min[group.fields[0]]) / (minMaxData.max[group.fields[0]] - minMaxData.min[group.fields[0]]) * 100}
                     index={index}
                   />
                 </Grid>
@@ -202,13 +205,17 @@ const Details = () => {
                       {index !== 3 ?
                         <ColorLinearProgress 
                           variant="determinate" 
-                          value={(stockData[field] - minMaxData.min[field]) / (minMaxData.max[field] - minMaxData.min[field]) * 100} 
+                          value={!stockData[field] || isNaN(stockData[field]) 
+                            ? 0 
+                            : (stockData[field] - minMaxData.min[field]) / (minMaxData.max[field] - minMaxData.min[field]) * 100} 
                           index={index} 
                         />
                         :
                         <FourthAccordionColorLinearProgress 
                           variant="determinate" 
-                          value={(stockData[field] - minMaxData.min[field]) / (minMaxData.max[field] - minMaxData.min[field]) * 100} 
+                          value={!stockData[field] || isNaN(stockData[field]) 
+                            ? 0 
+                            : (stockData[field] - minMaxData.min[field]) / (minMaxData.max[field] - minMaxData.min[field]) * 100} 
                         />
                       }
                     </CardContent>
