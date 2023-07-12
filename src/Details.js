@@ -129,7 +129,7 @@ const Details = () => {
             <Grid container alignItems="center">
               <Grid item xs={12}>
                 <CustomTypography variant="h6">
-                  {"時富雷達 (CR)"}: {stockData["時富雷達 (CR)"]}
+                  {"時富雷達 (CR)"}: {(!stockData["時富雷達 (CR)"] || isNaN(stockData["時富雷達 (CR)"])) ? "N/A" : Number(stockData["時富雷達 (CR)"]).toFixed(2)}
                 </CustomTypography>
               </Grid>
               <Grid item xs={12}>
@@ -152,7 +152,7 @@ const Details = () => {
                   {index < 3 ? (
                     <Tooltip title={`${group.description[0]}`}>
                       <Box component="span" sx={{ display: 'flex', alignItems: 'center' }}>
-                        {`${group.title} ${group.fields[0]}: ${stockData[group.fields[0]]}`}
+                        {`${group.title} ${group.fields[0]}: ${(!stockData[group.fields[0]] || isNaN(stockData[group.fields[0]])) ? "N/A" : Number(stockData[group.fields[0]]).toFixed(2)}`}
                         <Box sx={{ ml: 1 }}>
                           <InfoIcon color="action" />
                         </Box>
