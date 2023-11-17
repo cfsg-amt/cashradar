@@ -2,8 +2,8 @@
 import axios from 'axios';
 
 // Production
-const serverURL = 'https://radar.cfsg.com.hk';
-// const serverURL = 'http://localhost:8996';
+// const serverURL = 'https://radar.cfsg.com.hk';
+const serverURL = 'http://localhost:8996';
 
 export function fetchServerData() {
   return axios.get(serverURL)

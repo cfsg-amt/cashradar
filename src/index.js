@@ -19,6 +19,13 @@ const theme = createTheme({
   },
 });
 
+if (process.env.NODE_ENV === 'production') {
+	console.log=() =>{}	
+	console.dir=() =>{}	
+	console.error=() =>{}		
+	console.debug=() =>{}		
+}
+
 createRoot(document.getElementById('root')).render(
   <ThemeProvider theme={theme}>
     <Provider store={store}>
