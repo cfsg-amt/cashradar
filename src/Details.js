@@ -93,14 +93,16 @@ const Details = () => {
   // Define the accordion groups
   const accordionGroups = [
 	{
-	  title: '基本及技術分析總分',
+	  title: '分析摘要',
+    titleUnit:  '總分',
 	  fields: ['時富雷達 (CR)', '行業', '基本分析比重', '技術分析比重', '基本分析分數', '技術分析分數'],
 	  description: ['基於公司基本和技術因素：使用多因子 HFA 模型評估歷史財表信息、加上運用綜合大行對公司未來業務增長預測 EFA 模型函數、以及使用當前市場信號和交易統計進行分析編譯，通過回歸總結成一數字以選擇組合適當的股票。當選中目標股票後，人工智能優化系統將進行下一步處理 - 投資組合優化。',
 	  '','基本面分析所占比例','技術面分析所占比例','基於公司財務報表分析分數','基於股票價格趨勢和交易量等指標分析分數'
 	  ]
 	},
     {
-      title: '',
+      title: '基本分析 - 歷史基因模型',
+      titleUnit:  '標準分數',
       fields: ['基因分析標準分數', '銷售額增長標準分數', '債務股本比例標準分數', '淨收入改善標準分數', '資本回報標準分數', '保留盈餘增長標準分數'],
       description: ['基本面分數（FA）。讀數從 0 最差到 10 最佳。',
         '銷售增長標準化分數 (Sg)，以公司過去 10 個報告期總收益為基礎，並計算增長模式分數。總收益是扣除銷售退回、津貼、折扣和基於銷售稅收後，由公司產生的。如果財務子公司在工業公司中，則包括在報告期內始終包括這些子公司的收入。在某些行業（例如運輸或公用事業）中，包括地方政府補貼。排除與合資企業和/或聯營企業收益額。排除公司內部收入。排除停業業務收入。',
@@ -110,17 +112,19 @@ const Details = () => {
         '留存收益標準化分數 (REg)，使用資產負債表上的留存收益，並分析過去 10 個報告期的增長模式。是公司累積的盈餘、盈餘儉蓄或未分配利潤。包括法定儲備和當年度凈利潤。']
     },
     {
-      title: '',
-      fields: ['預測收益指數','預測股值指數','預測營運增長指數','風險波幅及交易量指數','穩定增長指標','穩定增長指標組別'],
-      description: ['預測收益是基於大行分析師對未來幾個期間（例如1年、2年）的預測，並使用平滑系数以避免極端情況。盈利數據主要集中分析整體企業每股利潤表現，並撇除某些特殊項目影響。',
+      title: '基本分析 - 未來增長量化模型',
+      titleUnit:  '指標組別',
+      fields: ['穩定增長指標組別','預測收益指數','預測股值指數','預測營運增長指數','風險波幅及交易量指數','穩定增長指標'],
+      description: ['穩定增長模型指標總結會剖析地區指數內所有企業而判斷由1到10個不同級別。以10為最具營運能力潛力，而1為最低發展空間。',
+    '預測收益是基於大行分析師對未來幾個期間（例如1年、2年）的預測，並使用平滑系数以避免極端情況。盈利數據主要集中分析整體企業每股利潤表現，並撇除某些特殊項目影響。',
 	  '預測股值指數綜合相對期間之歷史股價，大行分析員未來看法，以及企業價（Enterprise Value) 對市價（Market Capitalization Value）和一系列函數去釐定合理的每股股值來作之後公司收益比分析。',
 	  '根據公司總未來幾個季度收益增長，營業利益率上升幅度，現金流累積總數，減去正常資源消耗投資等以上項目，和目前之情況作比較去評估公司未來發展潛力。',
 	  '風險波幅 (Volatility factor) 及交易量指數 (Volume factor) 是根據公司歷史不同期間之波動水平變化和當中交易模式之間的綜合指標。',
-	  '穩定增長指標是未來量化增長基本分析模型的結果，總結以上預測公司短期內（3個月到2年）之業務運作表現來評估價值回報率。',
-	  '穩定增長模型指標總結會剖析地區指數內所有企業而判斷由1到10個不同級別。以10為最具營運能力潛力，而1為最低發展空間。']
+	  '穩定增長指標是未來量化增長基本分析模型的結果，總結以上預測公司短期內（3個月到2年）之業務運作表現來評估價值回報率。']
     },		
     {
-      title: '',
+      title: '技術分析 - 量化基因模型',
+      titleUnit:  '標準分數',
       fields: ['技術分析標準分數', '價格及交易量變化比率分數', '調整後移動平均線標準分數', '調整後動向指標分數', '相對強弱指數標準分數', '保力加通道指數標準分數'],
       description: ['技術分析分數（TA）。讀數從0最差到10最佳。',
         '價格及交易量變化比率 Alpha R 分數是基於價格變化和成交量變化計算，用於預測未來（5-9 天）價格趨勢。價格變化與成交量變化的矩陣可作為支持或拖累指標。',
@@ -130,7 +134,8 @@ const Details = () => {
         '保力加通道 Bollinger Band 標準化分數是一個簡單移動平均線（20期）和一個上下限帶組成，稱為保力加通道。這些通道是從移動平均線的 2 個標準差中得出。95%的股票波幅將在這個通道內捕獲。']
     },
     {
-      title: '',
+      title: '環社管指標',
+      titleUnit: '指標分數',
       fields: ['環社管(ESG)分數', '環保分數', '社會分數', '管治分數'],
       description: ['基於環境、社會和治理（ESG）數據中的披露程度的公司自有評分。該評分範圍從不披露得分中包含的任何ESG數據的公司的0分到披露每個數據點的100分。未被數據源覆蓋的公司將沒有得分，顯示N/A。跨行業和地區適用一致的主題、數據領域和權重列表。該得分所包括的主題和數據領域主要基於行業不可知框架選擇，但某些主題可能不適用於所有行業。環境（E）、社會（S）和治理（G）支柱在整體ESG披露得分中權重相等，每個支柱中的每個主題權重相等，主題權重分配到與問題有關的領域上，數量領域的權重比二進制領域大。此得分衡量公司公開報告的ESG數據量，並不衡量公司在任何數據點上的表現。',
         '基於環境、社會和治理（ESG）數據中的環境數據披露程度公司自有評分。該評分範圍從不披露得分中包含的任何環境數據的公司的0分到披露每個數據點的100分。未被數據源覆蓋的公司將沒有得分，顯示N/A。跨行業和地區適用一致的主題、數據領域和權重列表。該得分所包括的主題和數據領域主要基於行業不可知框架選擇，但某些主題可能不適用於所有行業。每個支柱中的每個主題權重相等，主題權重分配到與問題有關的領域上，數量領域的權重比二進制領域大。此得分衡量公司公開報告的環境數據量，並不衡量公司在任何數據點上的表現。',
@@ -185,7 +190,7 @@ const Details = () => {
             <Grid container alignItems="center">
               <Grid item xs={12}>
                 <CustomTypography variant="h6">
-                  {"時富雷達 (CR)"}: {(!stockData["時富雷達 (CR)"] || isNaN(stockData["時富雷達 (CR)"])) ? "N/A" : Number(stockData["時富雷達 (CR)"]).toFixed(2)}
+                  {"歸因分析總分"}: {(!stockData["時富雷達 (CR)"] || isNaN(stockData["時富雷達 (CR)"])) ? "N/A" : Number(stockData["時富雷達 (CR)"]).toFixed(2)}
                 </CustomTypography>
               </Grid>
               <Grid item xs={12}>
@@ -205,27 +210,29 @@ const Details = () => {
         <Accordion key={index}>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <Grid container alignItems="center">
-              <Grid item xs={12}>
-                <CustomTypography variant="h6">
-                  {index < 5 ? (
-                    <Tooltip title={`${group.description[0]}`}>
-                      <Box component="span" sx={{ display: 'flex', alignItems: 'center' }}>
-                        {`${group.title} ${group.fields[0]}: ${(!stockData[group.fields[0]] || isNaN(stockData[group.fields[0]])) ? "N/A" : Number(stockData[group.fields[0]]).toFixed(2)}`}
-                        <Box sx={{ ml: 1 }}>
-                          <InfoIcon color="action" />
-                        </Box>
-                      </Box>
-                    </Tooltip>
-                  ) : group.title}
-                </CustomTypography>
-              </Grid>
+        <Grid item xs={12}>
+          <CustomTypography variant="h6">
+            {/* Check if index is less than 5 */}
+            {index < 5 ? (
+              <Tooltip title={`${group.description[0]}`}>
+                <Box component="span" sx={{ display: 'flex', alignItems: 'center' }}>
+                  {`${group.title}: (${group.titleUnit} = ${(!stockData[group.fields[0]] || isNaN(stockData[group.fields[0]])) ? "N/A" : Number(stockData[group.fields[0]]).toFixed(2)})`}
+                  <Box sx={{ ml: 1 }}>
+                    <InfoIcon color="action" />
+                  </Box>
+                </Box>
+              </Tooltip>
+            ) : group.title}
+          </CustomTypography>
+        </Grid>
+              {/* Display the line only first five elements */}
               {index < 5 && 
                 <Grid item xs={12}>
                   <ColorLinearProgress
                     variant="determinate"
                     value={!stockData[group.fields[0]] || isNaN(stockData[group.fields[0]]) 
                       ? 0 
-                      :  group.fields[0]=="時富雷達 (CR)" ? (stockData["時富雷達 (CR)"] / 10) * 100 : (stockData[group.fields[0]] - minMaxData.min[group.fields[0]]) / (minMaxData.max[group.fields[0]] - minMaxData.min[group.fields[0]]) * 100}
+                      : group.fields[0]==="時富雷達 (CR)" ? (stockData["時富雷達 (CR)"] / 10) * 100 : (stockData[group.fields[0]] - minMaxData.min[group.fields[0]]) / (minMaxData.max[group.fields[0]] - minMaxData.min[group.fields[0]]) * 100}
                     index={index}
                   />
                 </Grid>
@@ -250,7 +257,7 @@ const Details = () => {
                         </Grid>
                       </Grid>
                       <CustomTypography variant="body1" color="text.secondary">
-                        {field === "大行中位目標回報"
+                        {field === "大行中位目標回報" || field === "百分比變化（1日）" || field === "百分比變化（1月）" || field === "百分比變化（年初至今）"
                           ? (!stockData[field] || isNaN(stockData[field])) 
                             ? "N/A"
                             : `${(Number(stockData[field]) * 100).toFixed(2)}%`

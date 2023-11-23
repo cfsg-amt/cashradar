@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Radar from './Radar';
 import Pwd from './Pwd';
 import RadarTab from './RadarTab';
-import { BrowserRouter as Router, Route, Routes, useNavigate, Link, Navigate } from "react-router-dom";
+import { HashRouter as Router, Route, Routes, Link, Navigate } from "react-router-dom";
 import XYFilter from './XYFilter';
 import Search from './Search';
 import Details from './Details';
@@ -26,7 +26,7 @@ function AuthenticatedApp({ handleMenuClick, anchorEl, handleMenuClose, isVisibl
 
   return (
     <div className="App" style={{backgroundColor: isMobile ? 'white' : tabletBackgroundColor}}>
-      <AppBar position="static" style={{ backgroundColor: '#ea5504' }}>
+      <AppBar position="static" style={{ backgroundColor: '#ad9f92' }}>
         <Toolbar>
           <IconButton edge="start" color="inherit" aria-label="menu">
             <img src={process.env.PUBLIC_URL + '/static/cfsg.svg'} alt="logo" style={{width: "200px"}}/>

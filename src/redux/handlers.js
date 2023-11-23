@@ -46,8 +46,8 @@ export function getRadarChartData(selectedRegion, selectedGroups, selectedX, sel
   return formattedData;
 }
 
-// const serverURL = 'https://radar.cfsg.com.hk';
-const serverURL = 'http://localhost:8996';
+const serverURL = 'https://radar.cfsg.com.hk';
+// const serverURL = 'http://localhost:8996';
 const collections = ["Sec", "Ind", "StkSH", "StkSZ", "StkHK"];
 const initHeaders = ["基本分析分數", "技術分析分數", "時富雷達 (CR)", "行業", "name"];
 
