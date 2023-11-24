@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { setData, setHeaders } from './redux/dataSlice';
 
-// const serverURL = 'http://localhost:8996';
-const serverURL = 'https://radar.cfsg.com.hk';
+const serverURL = 'http://localhost:8996';
+// const serverURL = 'https://radar.cfsg.com.hk';
 const collections = ["Sec", "Ind", "StkSH", "StkSZ", "StkHK"];
-const initHeaders = ["基本分析分數", "技術分析分數", "時富雷達 (CR)", "行業", "name"];
+const initHeaders = ["基本分析分數", "技術分析分數", "歸因分析總分", "行業", "name"];
 
 export function fetchInitialData(dispatch) {
   for (let collection of collections) {
@@ -28,7 +28,7 @@ export function fetchInitialData(dispatch) {
 }
 
 export function testGetByHeadersHandler(dispatch) {
-  const headers = ["基本分析分數", "技術分析分數", "時富雷達 (CR)", "行業", "name"];
+  const headers = ["基本分析分數", "技術分析分數", "歸因分析總分", "行業", "name"];
   const encodedHeaders = encodeURI(headers.join(','));
   
   return axios.get(`${serverURL}/api/v1/Sec/item?headers=${encodedHeaders}`)

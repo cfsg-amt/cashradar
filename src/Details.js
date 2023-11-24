@@ -95,7 +95,7 @@ const Details = () => {
 	{
 	  title: '分析摘要',
     titleUnit:  '總分',
-	  fields: ['時富雷達 (CR)', '行業', '基本分析比重', '技術分析比重', '基本分析分數', '技術分析分數'],
+	  fields: ['歸因分析總分', '行業', '基本分析比重', '技術分析比重', '基本分析分數', '技術分析分數'],
 	  description: ['基於公司基本和技術因素：使用多因子 HFA 模型評估歷史財表信息、加上運用綜合大行對公司未來業務增長預測 EFA 模型函數、以及使用當前市場信號和交易統計進行分析編譯，通過回歸總結成一數字以選擇組合適當的股票。當選中目標股票後，人工智能優化系統將進行下一步處理 - 投資組合優化。',
 	  '','基本面分析所占比例','技術面分析所占比例','基於公司財務報表分析分數','基於股票價格趨勢和交易量等指標分析分數'
 	  ]
@@ -190,15 +190,15 @@ const Details = () => {
             <Grid container alignItems="center">
               <Grid item xs={12}>
                 <CustomTypography variant="h6">
-                  {"歸因分析總分"}: {(!stockData["時富雷達 (CR)"] || isNaN(stockData["時富雷達 (CR)"])) ? "N/A" : Number(stockData["時富雷達 (CR)"]).toFixed(2)}
+                  {"歸因分析總分"}: {(!stockData["歸因分析總分"] || isNaN(stockData["歸因分析總分"])) ? "N/A" : Number(stockData["歸因分析總分"]).toFixed(2)}
                 </CustomTypography>
               </Grid>
               <Grid item xs={12}>
                 <CustomColorLinearProgress
                   variant="determinate"
-                  value={!stockData["時富雷達 (CR)"] || isNaN(stockData["時富雷達 (CR)"]) 
+                  value={!stockData["歸因分析總分"] || isNaN(stockData["歸因分析總分"]) 
                     ? 0 
-                    : (stockData["時富雷達 (CR)"] / 10) * 100}
+                    : (stockData["歸因分析總分"] / 10) * 100}
                 />
               </Grid>
             </Grid>
@@ -232,7 +232,7 @@ const Details = () => {
                     variant="determinate"
                     value={!stockData[group.fields[0]] || isNaN(stockData[group.fields[0]]) 
                       ? 0 
-                      : group.fields[0]==="時富雷達 (CR)" ? (stockData["時富雷達 (CR)"] / 10) * 100 : (stockData[group.fields[0]] - minMaxData.min[group.fields[0]]) / (minMaxData.max[group.fields[0]] - minMaxData.min[group.fields[0]]) * 100}
+                      : group.fields[0]==="歸因分析總分" ? (stockData["歸因分析總分"] / 10) * 100 : (stockData[group.fields[0]] - minMaxData.min[group.fields[0]]) / (minMaxData.max[group.fields[0]] - minMaxData.min[group.fields[0]]) * 100}
                     index={index}
                   />
                 </Grid>
@@ -250,37 +250,39 @@ const Details = () => {
                           <CustomTypography variant="subtitle1">{field}</CustomTypography>
                         </Grid>
                         <Grid item>
-                          {/* Replace the Tooltip title with the description */}
                           <Tooltip title={`${group.description[index < 3 ? fieldIndex + 1 : fieldIndex]}`}>
                             <InfoIcon color="action" />
                           </Tooltip>
                         </Grid>
                       </Grid>
                       <CustomTypography variant="body1" color="text.secondary">
-                        {field === "大行中位目標回報" || field === "百分比變化（1日）" || field === "百分比變化（1月）" || field === "百分比變化（年初至今）"
-                          ? (!stockData[field] || isNaN(stockData[field])) 
-                            ? "N/A"
-                            : `${(Number(stockData[field]) * 100).toFixed(2)}%`
-                          : (!stockData[field] || isNaN(stockData[field]))
-                            ? "N/A"
-                            : Number(stockData[field]).toFixed(2)}
+                        {field === "行業"
+                          ? stockData[field]
+                          : field === "大行中位目標回報" || field === "百分比變化（1日）" || field === "百分比變化（1月）" || field === "百分比變化（年初至今）"
+                            ? (!stockData[field] || isNaN(stockData[field])) 
+                              ? "N/A"
+                              : `${(Number(stockData[field]) * 100).toFixed(2)}%`
+                            : (!stockData[field] || isNaN(stockData[field]))
+                              ? "N/A"
+                              : Number(stockData[field]).toFixed(2)
+                        }
                       </CustomTypography>
-                      {index !== 3 ?
-                        <ColorLinearProgress 
-                          variant="determinate" 
-                          value={!stockData[field] || isNaN(stockData[field]) 
-                            ? 0 
-                            : (stockData[field] - minMaxData.min[field]) / (minMaxData.max[field] - minMaxData.min[field]) * 100} 
-                          index={index} 
-                        />
-                        :
-                        <FourthAccordionColorLinearProgress 
-                          variant="determinate" 
-                          value={!stockData[field] || isNaN(stockData[field]) 
-                            ? 0 
-                            : (stockData[field] - minMaxData.min[field]) / (minMaxData.max[field] - minMaxData.min[field]) * 100} 
-                        />
-                      }
+                      {field !== "行業" && (
+                        index !== 3
+                          ? <ColorLinearProgress 
+                            variant="determinate" 
+                            value={!stockData[field] || isNaN(stockData[field]) 
+                              ? 0 
+                              : (stockData[field] - minMaxData.min[field]) / (minMaxData.max[field] - minMaxData.min[field]) * 100} 
+                            index={index} 
+                          />
+                          : <FourthAccordionColorLinearProgress 
+                            variant="determinate" 
+                            value={!stockData[field] || isNaN(stockData[field]) 
+                              ? 0 
+                              : (stockData[field] - minMaxData.min[field]) / (minMaxData.max[field] - minMaxData.min[field]) * 100} 
+                          />
+                      )}
                     </CardContent>
                   </Card>
                 </Grid>

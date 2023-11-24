@@ -26,18 +26,18 @@ export function getRadarChartData(selectedRegion, selectedGroups, selectedX, sel
     const groupKey = `${selectedRegion}${groupIndex}`;
 
     // Check if data for the group exists
-    if (!regionData[selectedX][groupKey] || !regionData[selectedY][groupKey] || !regionData["時富雷達 (CR)"][groupKey]) {
+    if (!regionData[selectedX][groupKey] || !regionData[selectedY][groupKey] || !regionData["歸因分析總分"][groupKey]) {
       continue;
     }
 
     for (let i = 0; i < regionData[selectedX][groupKey].length; i++) {
-      const radarScore = regionData["時富雷達 (CR)"][groupKey][i];
+      const radarScore = regionData["歸因分析總分"][groupKey][i];
 
       // The exact format will depend on your data structure and how you want to display it
       formattedData.push({
         x: regionData[selectedX][groupKey][i],
         y: regionData[selectedY][groupKey][i],
-        label: `名稱: ${regionData["name"][groupKey][i]} \n 時富雷達分數: ${radarScore} \n ${selectedX}: ${regionData[selectedX][groupKey][i]} \n ${selectedY}: ${regionData[selectedY][groupKey][i]}`,
+        label: `名稱: ${regionData["name"][groupKey][i]} \n 歸因分析總分: ${radarScore} \n ${selectedX}: ${regionData[selectedX][groupKey][i]} \n ${selectedY}: ${regionData[selectedY][groupKey][i]}`,
         name: regionData["name"][groupKey][i],
         color: colors[groupIndex],
       });
@@ -46,10 +46,11 @@ export function getRadarChartData(selectedRegion, selectedGroups, selectedX, sel
   return formattedData;
 }
 
-const serverURL = 'https://radar.cfsg.com.hk';
-// const serverURL = 'http://localhost:8996';
+// const serverURL = 'https://radar.cfsg.com.hk';
+const serverURL = 'http://localhost:8996';
+// const serverURL = 'http://l45411e1993.asuscomm.com'
 const collections = ["Sec", "Ind", "StkSH", "StkSZ", "StkHK"];
-const initHeaders = ["基本分析分數", "技術分析分數", "時富雷達 (CR)", "行業", "name"];
+const initHeaders = ["基本分析分數", "技術分析分數", "歸因分析總分", "行業", "name"];
 
 export function fetchInitialData(dispatch) {
   console.log("fetchInitialData() start")
