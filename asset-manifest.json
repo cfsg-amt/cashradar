@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/cashradar/static/css/main.e6c13ad2.css",
-    "main.js": "/cashradar/static/js/main.0caa4df8.js",
-    "index.html": "/cashradar/index.html",
-    "main.e6c13ad2.css.map": "/cashradar/static/css/main.e6c13ad2.css.map",
-    "main.0caa4df8.js.map": "/cashradar/static/js/main.0caa4df8.js.map"
+    "main.css": "/hercules/static/css/main.e6c13ad2.css",
+    "main.js": "/hercules/static/js/main.e9a4bc0d.js",
+    "index.html": "/hercules/index.html",
+    "main.e6c13ad2.css.map": "/hercules/static/css/main.e6c13ad2.css.map",
+    "main.e9a4bc0d.js.map": "/hercules/static/js/main.e9a4bc0d.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.0caa4df8.js"
+    "static/js/main.e9a4bc0d.js"
   ]
 }
